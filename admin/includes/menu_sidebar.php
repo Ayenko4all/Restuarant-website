@@ -26,5 +26,7 @@
         <li><a href="aad_blog.php">Add Blog</a></li>
       </ul>
     </li>
+    <img src="<?=$admin['admin_image']?>" width="220" height="10" class="rounded-circle">
+    <li><?=$admin['admin_name']?></li>
   </ul>
 </div>

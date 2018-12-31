@@ -28,8 +28,8 @@
       </ul>
     </li>
     
-    <img src="<?=$admin['admin_image']?>" width="40" height="100" class="rounded-circle">
+    <img src="<?=$admin['admin_image']?>" width="220" height="10" class="rounded-circle">
     <li><?=$admin['admin_name']?></li>
-    <li><?=$admin['admin_image']?></li>
+   
   </ul>
 </div>

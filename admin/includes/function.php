@@ -654,8 +654,66 @@ DELIMETER;
 function add_menu(){
 
 	global $conn;
-
 	
+	$error = [];
+	if (isset($_POST['add_menu'])) {
+		$menu_ref = rand(0000000,999999);
+		$menu_title = escape_string($_POST['menu_title']);
+		$menu_price = escape_string($_POST['menu_price']);
+		$menu_quantity = escape_string($_POST['menu_quantity']);
+		$menu_cat = escape_string($_POST['menu_cat']);
+		$menu_description = escape_string($_POST['menu_description']);
+
+		if (!is_numeric($menu_price)) {
+			
+			$error[] = "Enter valued Price!";
+		}
+
+		if (!empty($_FILES)) {
+		//var_dump($_FILES);
+		$photo = $_FILES['file'];
+		$name = $photo['name'];
+		$nameArray = explode('.', $name);
+		$fileName = $nameArray[0];
+		$fileExtension = $nameArray[1];
+		$mime = explode('/',$photo['type']);
+		$mimeType = $mime[0];
+		$mimeExtension = $mime[1];
+		$tmpLocation = $photo['tmp_name'];
+		$fileSize = $photo['size'];
+		$allowed = array('png','jpg','jpeg','gif');
+		$uploadName = md5(microtime()).'.'.$fileExtension;
+		$uploadPath = 'images'.$uploadName;
+		$imagePath = 'images'.$uploadName;
+		if ($mimeType != 'image') {
+			$error[] = 'The file must be an image.';
+		}
+		if (!in_array($fileExtension, $allowed)) {
+			$error[] = 'The file must be a jpg, png, jprg or gif.';
+		}
+		if ($fileSize > 15000000) {
+			$error[] = 'The file size must be below 15mb.';
+		}
+		if ($fileExtension != $mimeExtension && ($mimeExtension = 'jpeg' && $fileExtension != 'jpg')) {
+			$error[] = 'The file extension deos not match the file.';
+		}
+
+	}
+
+		if (!empty($error)) {
+			echo displayError($error);
+		} 
+		else
+		{
+			if (!empty($_FILES)) {
+			move_uploaded_file($tmpLocation,$uploadPath);
+			}
+			$query = query("INSERT INTO menu(menu_reference,title,price,quantity,cat_id,description,images) VALUES('$menu_ref',$menu_title','$menu_price','$menu_cat','$menu_description','$imagePath') ");
+			confirm($query);
+			redirect("menu.php");
+			set_message("Menu was added");
+		}
+	}	
 }
 
 ?>

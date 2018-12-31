@@ -1,4 +1,4 @@
-<?php require "includes/menu_header.php";?>
+required<?php require "includes/menu_header.php";?>
 <body>
 
 <!--Header-part-->
@@ -33,23 +33,30 @@
             <h5>Menu-info</h5>
           </div>
           <div class="widget-content nopadding">
-            <form action="#" method="get" class="form-horizontal">
+            <form  method="post" class="form-horizontal" enctype="multipart/form-data">
+              <?php add_menu();?>
               <div class="control-group">
                 <label class="control-label">Menu Name :</label>
                 <div class="controls">
-                  <input type="text" class="span11" placeholder="Enter title" />
+                  <input type="text" class="span11" name="menu_title" placeholder="Enter title" />
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Menu Price :</label>
                 <div class="controls">
-                  <input type="text" class="span11" placeholder="Enter Price" />
+                  <input type="text" class="span11" name="menu_price" placeholder="Enter Price" />
+                </div>
+              </div>
+               <div class="control-group">
+                <label class="control-label">Menu Quantity :</label>
+                <div class="controls">
+                  <input type="text" class="span11" name="menu_quantity" placeholder="Enter Quantity" />
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Menu Category :</label>
                 <div class="controls">
-                  <select >
+                  <select name="menu_cat" >
                     <option>Choose Category</option>
                     <option>Second option</option>
                     <option>Third option</option>
@@ -64,17 +71,17 @@
               <div class="control-group">
                 <label class="control-label">File upload input :</label>
                 <div class="controls">
-                  <input type="file" />
+                  <input type="file" name="file"/>
                 </div>
               </div>
               <div class="control-group">
                 <label class="control-label">Menu Description :</label>
                 <div class="controls">
-                  <textarea class="textarea_editor span11" cols="15" ></textarea>
+                  <textarea class="textarea_editor span11" cols="15" name="menu_description" ></textarea>
                 </div>
               </div>
               <div class="form-actions">
-                <button type="submit" class="btn btn-success">Save</button>
+                <button type="submit" class="btn btn-success" name="add_menu">Save</button>
                  <a href="menu.php" type="submit" class="btn btn-default">Cancle</a>
               </div>
             </form>

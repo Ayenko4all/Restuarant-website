@@ -49,6 +49,8 @@
         <li><a href="add_blog.php">Add Blog</a></li>
       </ul>
     </li>
+    <img src="<?=$admin['admin_image']?>" width="220" height="20px" class="rounded-circle">
+    <li><?=$admin['admin_name']?></li>
   </ul>
 </div>
 <!--sidebar-menu-->
